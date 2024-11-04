@@ -8,7 +8,7 @@
             <div class="plan-card">
                 <input type="radio" name="planType" id="planType-{{plan.id}}" [value]="plan.id" (change)="dataModel().planType = plan.id" [checked]="dataModel().planType === plan.id">
                 <label for="planType-{{plan.id}}" class="plan-type-wrapper" [class.plan-selected]="dataModel().planType === plan.id">
-                    <img src="/assets/images/icon-{{plan.name.toLowerCase()}}.svg" alt="">
+                    <img src="assets/images/icon-{{plan.name.toLowerCase()}}.svg" alt="">
                     <div class="plan-details">
                         <h2 class="plan-name">{{plan.name}}</h2>
                         <span class="plan-cost">{{plan.cost[planInterval] | currency : "" : "symbol" : "0.0-0"}}/{{isYearly ? "yr" : "mo"}}</span>
