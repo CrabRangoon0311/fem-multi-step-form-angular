@@ -1,0 +1,53 @@
+<app-base-form [title]="formTitle" [description]="formDesc">
+    <ng-container form-body [ngTemplateOutlet]="isSubscriptionConfirmed ? successForm : confirmForm"></ng-container>
+    <ng-container form-footer [ngTemplateOutlet]="isSubscriptionConfirmed ? null : confirmFormFooter"></ng-container>
+</app-base-form>
+
+<ng-template #confirmForm>
+    <ng-container>
+        @if (selectedPlan) {
+        @let dataModel = this.dataModelService.dataModel;
+        @let planInterval = dataModel().planInterval;
+        @let isYearly = planInterval === "Yearly";
+        @let intervalAbrev = isYearly ? "yr" : "mo";
+        <div class="summary-wrapper">
+            <div class="plan-wrapper">
+                <div class="plan-summary">
+                    <h2>{{selectedPlan.name}} ({{dataModel().planInterval}})</h2>
+                    <a class="muted-text" href="" (click)="$event.preventDefault(); changePlanClicked()">Change</a>
+                </div>
+                <span class="addon-cost plan-cost">{{selectedPlan.cost[planInterval] | currency : "" : "symbol" : "0.0-0"}}/{{intervalAbrev}}</span>
+            </div>
+            <div class="addons-wrapper">
+                @for (addon of selectedAddons; track addon.id) {
+                <div class="addon-details">
+                    <span class="addon-name muted-text">{{addon.name}}</span>
+                    <span class="addon-cost">+{{addon.cost[planInterval] | currency : "" : "symbol" : "0.0-0"}}/{{intervalAbrev}}</span>
+                </div>
+                }
+            </div>
+        </div>
+        <div class="total-cost-wrapper">
+            <span class="muted-text">Total (per {{isYearly ? "year" : "month"}})</span>
+            <span class="total-cost">{{totalCost | currency : "" : "symbol" : "0.0-0"}}/{{intervalAbrev}}</span>
+        </div>
+        }
+    </ng-container>
+</ng-template>
+
+<ng-template #confirmFormFooter>
+    <app-form-nav-container>
+        <button type="button" class="btn-secondary" (click)="this.formService.movePrevious()">Go Back</button>
+        <button type="button" class="btn-primary btn-confirm" (click)="confirmClicked()" data-testid="confirm-btn">Confirm</button>
+    </app-form-nav-container>
+</ng-template>
+
+<ng-template #successForm>
+    <ng-container form-body>
+        <div class="message-wrapper">
+            <img src="assets/images/icon-thank-you.svg" alt="Checkmark">
+            <h1>Thank you!</h1>
+            <p class="confirm-message muted-text" data-testid="confirm-message">Thanks for confirming your subscription! We hope you have fun using our platform. If you ever need support, please feel free to email us at support&#64;loremgaming.com.</p>
+        </div>
+    </ng-container>
+</ng-template>

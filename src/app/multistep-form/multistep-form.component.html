@@ -1,0 +1,10 @@
+<div class="content-wrapper">
+    <div class="sidebar-wrapper">
+        <div class="form-step-wrapper">
+            <app-stepper [steps]="this.formService.stepDetails()" [activeStepIndex]="this.formService.activeStepIndex()"></app-stepper>
+        </div>
+    </div>
+    <div class="content">
+        <ng-container [ngComponentOutlet]="this.formService.formDetail().component"></ng-container>
+    </div>
+</div>

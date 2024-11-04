@@ -1,0 +1,6 @@
+<div class="nav-container">
+    <ng-content>
+        <button type="button" class="btn-secondary" (click)="this.formService.movePrevious()" [style.visibility]="this.formService.canMovePrevious() ? 'visible' : 'hidden'" data-testid="back-btn">Go Back</button>
+        <button type="button" class="btn-primary" (click)="this.formService.moveNext()" [disabled]="!canMoveNext()" data-testid="next-btn">Next Step</button>
+    </ng-content>
+</div>

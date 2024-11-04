@@ -1,0 +1,34 @@
+<app-base-form [title]="'Personal Info'" [description]="'Please provide your name, email address, and phone number.'">
+    <ng-container form-body>
+        <form #infoForm="ngForm">
+            <div class="fm-wrapper">
+                <div class="fm-input-wrapper">
+                    <div class="fm-label-container">
+                        <label class="fm-label" for="name">Name</label>
+                        <span class="fm-error">Please enter a valid name</span>
+                    </div>
+                    <input type="text" class="fm-input" id="name" name="name" [ngModel]="formModel().name" (ngModelChange)="this.modelService.updateModel({'name': $event})" required placeholder="e.g. Stephen King" data-testid="name-input" />
+                </div>
+                <div class="fm-input-wrapper">
+                    <div class="fm-label-container">
+                        <label class="fm-label" for="email">Email Address</label>
+                        <span class="fm-error">Please enter a valid email</span>
+                    </div>
+                    <input type="email" class="fm-input" id="email" name="email" [ngModel]="formModel().email" (ngModelChange)="this.modelService.updateModel({'email': $event})" email required placeholder="e.g. stephenking@lorem.com" data-testid="email-input" />
+                </div>
+                <div class="fm-input-wrapper">
+                    <div class="fm-label-container">
+                        <label class="fm-label" for="phone">Phone Number</label>
+                        <span class="fm-error">Please enter a valid number</span>
+                    </div>
+                    <input type="text" class="fm-input" id="phone" name="phone" [ngModel]="formModel().phoneNumber" (ngModelChange)="this.modelService.updateModel({'phoneNumber': $event})" pattern="\+?\d+" required placeholder="e.g. +1 234 567 8901" data-testid="phone-input" />
+                </div>
+            </div>
+        </form>
+    </ng-container>
+    <app-form-nav-container form-footer>
+        <div style="width: 100%; text-align: right;">
+            <button type="button" class="btn-primary" (click)="moveNext()" [disabled]="infoForm.invalid" data-testid="next-btn">Next Step</button>
+        </div>
+    </app-form-nav-container>
+</app-base-form>

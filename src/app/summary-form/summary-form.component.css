@@ -1,0 +1,85 @@
+.summary-wrapper {
+    background-color: var(--alabaster);
+    padding: 1.5rem;
+    border-radius: 5px;
+}
+
+.plan-wrapper {
+    display: flex;
+    align-items: center;
+    border-bottom: 1px solid var(--muted-text-color);
+    padding-bottom: 1.5rem;
+}
+
+.plan-summary {
+    display: flex;
+    flex-direction: column;
+    gap: .2rem;
+
+    &>h2 {
+        font-size: 1.6rem;
+    }
+}
+
+a {
+    &:hover {
+        color: var(--purplishblue);
+    }
+
+}
+
+.addons-wrapper {
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+    margin-top: 1.5rem
+}
+
+.addon-details {
+    display: flex;
+    justify-content: space-between;
+}
+
+.addon-cost {
+    font-size: 1.5rem;
+    margin-left: auto;
+}
+
+.plan-cost {
+    font-weight: 700;
+    font-size: 1.6rem;
+}
+
+.total-cost-wrapper {
+    background-color: var(--white);
+    padding: 1.5rem;
+    display: flex;
+    justify-content: space-between;
+}
+
+.total-cost {
+    color: var(--purplishblue);
+    font-size: 1.8rem;
+    font-weight: 700;
+}
+
+.btn-confirm {
+    background-color: var(--purplishblue);
+}
+
+.message-wrapper {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
+    &>img {
+        height: 7rem;
+        margin-block: 5rem 3rem;
+    }
+}
+
+.confirm-message {
+    font-size: 1.6rem;
+    text-align: center;
+    line-height: 1.5;
+}

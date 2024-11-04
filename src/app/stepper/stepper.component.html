@@ -1,0 +1,11 @@
+<div class="steps-wrapper">
+    @for (step of steps(); track step.title; let index = $index;) {
+    <div class="step" [class.active]="activeStepIndex() == index">
+        <div class="step-index">{{index + 1}}</div>
+        <div class="step-info-container">
+            <div class="step-title">{{step.title}}</div>
+            <div class="step-desc">{{step.desc}}</div>
+        </div>
+    </div>
+    }
+</div>

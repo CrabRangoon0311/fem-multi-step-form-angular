@@ -1,0 +1,121 @@
+/* CSS reset */
+*,
+*::before,
+*::after {
+    box-sizing: border-box;
+}
+
+body,
+h1,
+h2 {
+    margin: 0px;
+}
+
+button,
+input,
+textarea,
+select {
+    font: inherit;
+}
+
+img,
+picture,
+svg,
+canvas {
+    display: block;
+    max-inline-size: 100%;
+    block-size: auto;
+}
+
+/* End CSS reset */
+
+/* Page styles */
+
+:root {
+    /* Primary */
+    --marineblue: hsl(213, 96%, 18%);
+    --purplishblue: hsl(243, 100%, 62%);
+    --pastelblue: hsl(228, 100%, 84%);
+    --lightblue: hsl(206, 94%, 87%);
+    --strawberryred: hsl(354, 84%, 57%);
+
+    /* Neutral */
+    --coolgray: hsl(231, 11%, 63%);
+    --lightgray: hsl(229, 24%, 87%);
+    --magnolia: hsl(217, 100%, 97%);
+    --alabaster: hsl(231, 100%, 99%);
+    --white: hsl(0, 0%, 100%);
+
+    --font-family: "Ubuntu";
+    --muted-text-color: var(--coolgray);
+}
+
+html,
+body {
+    background-color: var(--magnolia);
+    height: 100%;
+    font-family: var(--font-family);
+    color: var(--marineblue);
+}
+
+html {
+    font-size: 62.5%;
+}
+
+body {
+    font-size: 1.6rem;
+}
+
+.btn-secondary,
+.btn-primary {
+    cursor: pointer;
+    border-radius: 5px;
+
+    &:focus-visible {
+        outline: 1px solid var(--marineblue);
+        outline-offset: 2px;
+    }
+}
+
+.btn-secondary {
+    background: none;
+    border: none;
+    padding: 0px;
+    color: var(--muted-text-color);
+    font-weight: 500;
+
+    @media (hover:hover) {
+        &:hover:not(:disabled) {
+            color: var(--marineblue);
+        }
+    }
+}
+
+.btn-primary {
+    background-color: var(--marineblue);
+    color: var(--white);
+    border: none;
+    padding: 1.2rem 2rem;
+
+    @media (hover:hover) {
+        &:hover:not(:disabled) {
+            opacity: .9;
+        }
+    }
+}
+
+button:disabled {
+    cursor: auto;
+    opacity: .5;
+}
+
+.muted-text {
+    color: var(--muted-text-color);
+}
+
+@media ((min-width: 750px) and (min-height: 500px)) {
+    body {
+        display: grid;
+        place-content: center;
+    }
+}

@@ -1,0 +1,20 @@
+<app-base-form [title]="'Pick add-ons'" [description]="'Add-ons help enhance your gaming experience.'">
+    <ng-container form-body>
+        <div class="addons-wrapper">
+            @let dataModel = dataModelService.dataModel;
+            @let planInterval = dataModel().planInterval;
+            @let isYearly = planInterval === "Yearly";
+            @for (addon of addons; track addon.id) {
+            <label class="addon-card">
+                <input type="checkbox" [checked]="dataModel().addons.includes(addon.id)" (change)="onAddonChanged(addon.id, $any($event.target).checked)">
+                <div class="addon-desc-wrapper">
+                    <h2 class="addon-name">{{addon.name}}</h2>
+                    <span class="addon-description muted-text">{{addon.desc}}</span>
+                </div>
+                <span class="addon-cost">+{{addon.cost[planInterval] | currency : "" : "symbol" : "0.0-0"}}/{{isYearly ? "yr" : "mo"}}</span>
+            </label>
+            }
+        </div>
+    </ng-container>
+    <app-form-nav-container form-footer></app-form-nav-container>
+</app-base-form>

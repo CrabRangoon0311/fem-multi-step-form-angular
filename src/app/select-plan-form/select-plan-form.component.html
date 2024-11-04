@@ -1,0 +1,30 @@
+<app-base-form [title]="'Select your plan'" [description]="'You have the option of monthly or yearly billing.'">
+    <ng-container form-body>
+        @let dataModel = this.dataModelService.dataModel;
+        @let planInterval = dataModel().planInterval;
+        @let isYearly = planInterval === "Yearly";
+        <div class="plans">
+            @for (plan of planTypes; track plan.id){
+            <div class="plan-card">
+                <input type="radio" name="planType" id="planType-{{plan.id}}" [value]="plan.id" (change)="dataModel().planType = plan.id" [checked]="dataModel().planType === plan.id">
+                <label for="planType-{{plan.id}}" class="plan-type-wrapper" [class.plan-selected]="dataModel().planType === plan.id">
+                    <img src="/assets/images/icon-{{plan.name.toLowerCase()}}.svg" alt="">
+                    <div class="plan-details">
+                        <h2 class="plan-name">{{plan.name}}</h2>
+                        <span class="plan-cost">{{plan.cost[planInterval] | currency : "" : "symbol" : "0.0-0"}}/{{isYearly ? "yr" : "mo"}}</span>
+                        @if (isYearly){
+                        <span class="plan-deal">2 months free</span>
+                        }
+                    </div>
+                </label>
+            </div>
+            }
+        </div>
+        <div class="interval-container">
+            <span [class.muted-text]="isYearly">Monthly</span>
+            <app-toggle-switch [(ngModel)]="dataModelService.dataModel().planInterval" [checkedVal]="'Yearly'" [uncheckedVal]="'Monthly'"></app-toggle-switch>
+            <span [class.muted-text]="!isYearly">Yearly</span>
+        </div>
+    </ng-container>
+    <app-form-nav-container form-footer></app-form-nav-container>
+</app-base-form>

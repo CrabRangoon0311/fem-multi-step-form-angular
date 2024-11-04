@@ -1,0 +1,14 @@
+<div class="form-wrapper">
+    <div class="form-content-wrapper">
+        <div class="form-content">
+            <div class="fm-header-wrapper">
+                <h1 class="title">{{title()}}</h1>
+                <p class="description">{{description()}}</p>
+            </div>
+            <ng-content select="[form-body]"></ng-content>
+        </div>
+    </div>
+    <div class="form-footer">
+        <ng-content select="[form-footer]"></ng-content>
+    </div>
+</div>
